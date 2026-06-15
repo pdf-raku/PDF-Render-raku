@@ -1,16 +1,16 @@
-PDF-Render
+PDF-Render-Simple
 ===========
 
 Description
 -----------
 
-Simple rendering of tagged PDF trees.
+Simple rendering of accessible PDF from tagged-PDF like rendering trees.
 
 Synopsis
 --------
 
 ```raku
-use PDF::Tags::Render;
+use PDF::Render::Simple;
 
 my %role-map = (
     'U' => :Span[:TextDecorationType<Underline>],
@@ -32,7 +32,14 @@ my Pair:D $pdf-ast =
            "timer with the appropriate interval each time it is tapped."],
      ];
 
-my PDF::Tags::Render $renderer .= new: :%role-map;
+my PDF::Render::Simple $renderer .= new: :%role-map;
 my PDF::API6 $pdf = $renderer.render($pdf-ast);
 $pdf.save-as: "example.pdf";
 ```
+
+Description
+-----------
+This module supports rendering of simple tagged PDF text documents.
+
+It is designed to easily translate from classic Raku POD or markdown
+formats, or to be directly used to generate simple text PDF documents.
